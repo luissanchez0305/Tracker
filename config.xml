@@ -63,7 +63,6 @@
         Otherwise, you can specify specific domains:
     -->
     <access origin="*"/> <!-- allow local pages -->
-    <preference name="permissions" value="none"/>
     <feature name="http://api.phonegap.com/1.0/geolocation"/>
     <!--
         <access origin="http://phonegap.com" />                    - allow any secure requests to http://phonegap.com/
