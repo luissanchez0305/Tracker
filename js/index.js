@@ -20,6 +20,7 @@ var timer;
 var map;
 var interval;
 var markers = [];
+var mapId = 'map1';
 var app = {
     // Application Constructor
     initialize: function() {
