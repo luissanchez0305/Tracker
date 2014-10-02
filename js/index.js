@@ -45,30 +45,32 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-    	//TODO CARGAR MAPA
-    	alert(position);
-    	alert(position.coords);
-    	var lat = position.coords.latitude;
-    	var lng = position.coords.longitude;
-    	alert('set latlng');
-    	var myLatlng = new google.maps.LatLng(lat,lng);
+		navigator.geolocation.getCurrentPosition(function(position){
+	    	//TODO CARGAR MAPA
+	    	var lat = position.coords.latitude;
+	    	var lng = position.coords.longitude;
+	    	alert('set latlng');
+	    	var myLatlng = new google.maps.LatLng(lat,lng);
 
-    	alert('set options');
-    	var mapOptions = {
-    	    center: myLatlng,
-    	    zoom: 12
-    	};
+	    	alert('set options');
+	    	var mapOptions = {
+	    	    center: myLatlng,
+	    	    zoom: 12
+	    	};
 
-    	alert('set map');
-    	map = new google.maps.Map(document.getElementById(mapId), mapOptions);
-    	alert('set prototype');
-    	google.maps.Map.prototype.clearOverlays = function() {
-    		for (var i = 0; i < markers.length; i++ ) {
-    		    markers[i].setMap(null);
-    		}
-    		markers.length = 0;
-    	};
-    	alert('done');
+	    	alert('set map');
+	    	map = new google.maps.Map(document.getElementById(mapId), mapOptions);
+	    	alert('set prototype');
+	    	google.maps.Map.prototype.clearOverlays = function() {
+	    		for (var i = 0; i < markers.length; i++ ) {
+	    		    markers[i].setMap(null);
+	    		}
+	    		markers.length = 0;
+	    	};
+	    	alert('done');
+		}, function(){
+			alert('error');
+		});
     },
     begin: function(){
     	// TODO SETEAR INTERVAL EN VARIABLE GLOBAL
@@ -85,14 +87,16 @@ var app = {
 };
 
 function placeMarker() {
-	var lat = position.coords.latitude;
-	var lng = position.coords.longitude;
-	var myLatlng = new google.maps.LatLng(lat,lng);
-	var marker = new google.maps.Marker({
-	    position: myLatlng,
-	    map: map
-	});
+	navigator.geolocation.getCurrentPosition(function(position){
+		var lat = position.coords.latitude;
+		var lng = position.coords.longitude;
+		var myLatlng = new google.maps.LatLng(lat,lng);
+		var marker = new google.maps.Marker({
+		    position: myLatlng,
+		    map: map
+		});
 
-	map.panTo(myLatlng);
-	markers.push(marker);
+		map.panTo(myLatlng);
+		markers.push(marker);		
+	}, function(){ alert('error'); });
 }
