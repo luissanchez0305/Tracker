@@ -46,39 +46,31 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 		navigator.geolocation.getCurrentPosition(function(position){
-	    	//TODO CARGAR MAPA
 	    	var lat = position.coords.latitude;
 	    	var lng = position.coords.longitude;
-	    	alert('set latlng');
 	    	var myLatlng = new google.maps.LatLng(lat,lng);
 
-	    	alert('set options');
 	    	var mapOptions = {
 	    	    center: myLatlng,
 	    	    zoom: 12
 	    	};
 
-	    	alert('set map');
 	    	map = new google.maps.Map(document.getElementById(mapId), mapOptions);
-	    	alert('set prototype');
 	    	google.maps.Map.prototype.clearOverlays = function() {
 	    		for (var i = 0; i < markers.length; i++ ) {
 	    		    markers[i].setMap(null);
 	    		}
 	    		markers.length = 0;
 	    	};
-	    	alert('done');
 		}, function(){
 			alert('error');
 		});
     },
     begin: function(){
-    	// TODO SETEAR INTERVAL EN VARIABLE GLOBAL
     	placeMarker();
     	interval = setTimeInterva(function() { placeMarker(); },2000);
     },
     stop: function(){
-    	// TODO DETENER INTERVAL
     	clearInterval(interval);
     },
     clean: function(){
@@ -98,5 +90,6 @@ function placeMarker() {
 
 		map.panTo(myLatlng);
 		markers.push(marker);		
+		alert(lat + ', ' + lng + ', ' + markers.length);
 	}, function(){ alert('error'); });
 }
