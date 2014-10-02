@@ -58,6 +58,7 @@ var app = {
 	    	map = new google.maps.Map(document.getElementById(mapId), mapOptions);
 	    	google.maps.Map.prototype.clearOverlays = function() {
 	    		for (var i = 0; i < markers.length; i++ ) {
+	    	    	alert(markers[i]);
 	    		    markers[i].setMap(null);
 	    		}
 	    		markers.length = 0;
@@ -71,11 +72,9 @@ var app = {
     },
     stop: function(){
     	clearInterval(interval);
-    	alert(markers.length);
     },
     clean: function(){
     	map.clearOverlays();
-    	alert(markers.length);
     }
 };
 
@@ -91,6 +90,5 @@ function placeMarker() {
 
 		map.panTo(myLatlng);
 		markers.push(marker);		
-		alert(lat + ', ' + lng + ', ' + markers.length);
 	}, function(){ alert('error'); });
 }
