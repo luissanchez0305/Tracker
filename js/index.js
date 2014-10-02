@@ -68,7 +68,7 @@ var app = {
     },
     begin: function(){
     	placeMarker();
-    	interval = setTimeInterva(function() { placeMarker(); },2000);
+    	interval = setTimeInterva(placeMarker(),2000);
     },
     stop: function(){
     	clearInterval(interval);
