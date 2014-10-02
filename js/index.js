@@ -72,9 +72,11 @@ var app = {
     },
     stop: function(){
     	clearInterval(interval);
+    	alert(markers.length);
     },
     clean: function(){
     	map.clearOverlays();
+    	alert(markers.length);
     }
 };
 
