@@ -46,7 +46,8 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
     	//TODO CARGAR MAPA
-    	alert('set lat lng');
+    	alert(position);
+    	alert(position.coords);
     	var lat = position.coords.latitude;
     	var lng = position.coords.longitude;
     	alert('set latlng');
