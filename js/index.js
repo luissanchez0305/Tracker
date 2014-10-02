@@ -67,7 +67,7 @@ var app = {
 		});
     },
     begin: function(){
-    	interval = setInterval(placeMarker(),2000);
+    	interval = setInterval(placeMarker,2000);
     },
     stop: function(){
     	clearInterval(interval);
