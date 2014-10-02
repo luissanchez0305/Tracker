@@ -48,19 +48,25 @@ var app = {
     	//TODO CARGAR MAPA
     	var lat = position.coords.latitude;
     	var lng = position.coords.longitude;
+    	alert('set latlng');
     	var myLatlng = new google.maps.LatLng(lat,lng);
+
+    	alert('set options');
     	var mapOptions = {
     	    center: myLatlng,
     	    zoom: 12
     	};
-    		
+
+    	alert('set map');
     	map = new google.maps.Map(document.getElementById(mapId), mapOptions);
+    	alert('set prototype');
     	google.maps.Map.prototype.clearOverlays = function() {
     		for (var i = 0; i < markers.length; i++ ) {
     		    markers[i].setMap(null);
     		}
     		markers.length = 0;
     	};
+    	alert('done');
     },
     begin: function(){
     	// TODO SETEAR INTERVAL EN VARIABLE GLOBAL
