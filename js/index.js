@@ -21,6 +21,8 @@ var map;
 var interval;
 var markers = [];
 var mapId = 'map1';
+var status = 'pause';
+var button = 'begin';
 var app = {
     // Application Constructor
     initialize: function() {
@@ -67,27 +69,53 @@ var app = {
 		});
     },
     begin: function(){
-    	interval = setInterval(placeMarker,2000);
+    	if(button == 'begin'){
+    		button == 'stop';
+    		interval = setInterval(placeMarker,2000);
+    	}
+    	else if(button == 'clean'){
+    		button = 'begin';
+        	status = 'pause';
+        	map.clearOverlays();
+    	}
     },
     stop: function(){
-    	clearInterval(interval);
+    	if(button == 'stop'){
+    		button = 'clean';
+	    	status = 'pause';
+	    	clearInterval(interval);
+    	}
     },
     clean: function(){
-    	map.clearOverlays();
+    	if(button == 'clean'){
+    		button = 'begin';
+	    	status = 'pause';
+	    	map.clearOverlays();
+    	}
     }
 };
 
 function placeMarker() {
-	navigator.geolocation.getCurrentPosition(function(position){
-		var lat = position.coords.latitude;
-		var lng = position.coords.longitude;
-		var myLatlng = new google.maps.LatLng(lat,lng);
-		var marker = new google.maps.Marker({
-		    position: myLatlng,
-		    map: map
-		});
-
-		map.panTo(myLatlng);
-		markers.push(marker);		
-	}, function(){ alert('error'); });
+	if(status == 'pause'){
+		status = 'running';
+		$('#loading').show();
+		navigator.geolocation.getCurrentPosition(function(position){
+			var lat = position.coords.latitude;
+			var lng = position.coords.longitude;
+			var myLatlng = new google.maps.LatLng(lat,lng);
+			var marker = new google.maps.Marker({
+			    position: myLatlng,
+			    map: map
+			});
+	
+			map.panTo(myLatlng);
+			markers.push(marker);
+			$('#count').html(markers.length);
+			status = 'pause';
+			$('#loading').hide();
+		}, function(){ 	
+			status = 'pause';
+			$('#loading').hide();
+			alert('error'); });
+	}
 }
