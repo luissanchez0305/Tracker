@@ -91,6 +91,7 @@ var app = {
     clean: function(){
     	if(button == 'clean'){
 			$('#loading').hide();
+			$('#count').html('0');
     		button = 'begin';
 	    	status = 'pause';
 	    	map.clearOverlays();
