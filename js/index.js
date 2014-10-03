@@ -74,6 +74,7 @@ var app = {
     		interval = setInterval(placeMarker,2000);
     	}
     	else if(button == 'clean'){
+			$('#loading').hide();
     		button = 'begin';
         	status = 'pause';
         	map.clearOverlays();
@@ -81,6 +82,7 @@ var app = {
     },
     stop: function(){
     	if(button == 'stop'){
+			$('#loading').hide();
     		button = 'clean';
 	    	status = 'pause';
 	    	clearInterval(interval);
@@ -88,6 +90,7 @@ var app = {
     },
     clean: function(){
     	if(button == 'clean'){
+			$('#loading').hide();
     		button = 'begin';
 	    	status = 'pause';
 	    	map.clearOverlays();
