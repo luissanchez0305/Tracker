@@ -58,7 +58,6 @@ var app = {
 	    	map = new google.maps.Map(document.getElementById(mapId), mapOptions);
 	    	google.maps.Map.prototype.clearOverlays = function() {
 	    		for (var i = 0; i < markers.length; i++ ) {
-	    	    	alert(markers[i]);
 	    		    markers[i].setMap(null);
 	    		}
 	    		markers.length = 0;
